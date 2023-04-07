@@ -1,9 +1,6 @@
 @section('style')
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-          integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
     <link rel="stylesheet" type="text/css"
@@ -191,8 +188,11 @@
                     <div id="carouselExampleControls" class="carousel slide">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="335183137_140137785375258_1842154047233564047_n.jpg" class="d-block w-100"
-                                     alt="...">
+                                @foreach($products as $product)
+                                <img src="{{asset('uploads/'.$product->image)}}" class="d-block w-100"
+                                     alt="{{$product->name}}">
+                                    @break
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -240,14 +240,10 @@
                     </div>
                     <div class="container mt-5 ">
                         <div class="center">
-                            <div><img src="335183137_140137785375258_1842154047233564047_n.jpg" alt="" width="200"
-                                      class="img img-fluide" onclick="slider(this);"></div>
-                            <div><img src="335138218_157160000525217_5631332350438105455_n.jpg" alt="" width="200"
-                                      class="img img-fluide" onclick="slider(this);"></div>
-                            <div><img src="334698646_154537757130872_5538416810101276117_n.jpg" alt="" width="200"
-                                      class="img img-fluide" onclick="slider(this);"></div>
-                            <div><img src="335168084_773595214489724_7554904769320067054_n.jpg" alt="" width="200"
-                                      class="img img-fluide" onclick="slider(this);"></div>
+                            @foreach($products as $product)
+                                <div><img src="{{asset('uploads/'. $product->image)}}" alt="" width="200"
+                                          class="img img-fluide" onclick="slider(this);"></div>
+                            @endforeach
                         </div>
                     </div>
                     <form action="" class="mt-5">

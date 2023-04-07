@@ -4,7 +4,7 @@ use App\Http\Controllers\PaypalController;
 use App\Http\Livewire\shoppingcart;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomizeProductsController;
-
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,3 +34,14 @@ Route::get('payment-success', [PaypalController::class, 'success'])
     ->name('payment.success');
 //modification des produits
 Route::get('customize-products',[CustomizeProductsController::class,'index']);
+//produit admin
+Route::prefix('products')->group(function(){
+    //afficher la liste des produits
+    Route::get('/',[ProductController::class,'index'])->name('product.index');
+    //Ajouter des produits
+    Route::get('create',[ProductController::class,'create'])->name('product.create');
+    Route::post('store',[ProductController::class,'store'])->name('product.store');
+    Route::get('destroy/{id}',[ProductController::class,'destroy'])->name('product.destroy');
+    Route::get('edit/{id}',[ProductController::class,'edit'])->name('product.edit');
+    Route::post('update/{id}',[ProductController::class,'update'])->name('product.update');
+});

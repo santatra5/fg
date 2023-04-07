@@ -14,6 +14,7 @@ class StripeController extends Controller
     }
     public function checkout(){
         Stripe::setApiKey(config('services.stripe.secret'));
+
     }
     public function success(){
         return view('welcome');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CustomizeProductsController extends Controller
@@ -13,7 +14,8 @@ class CustomizeProductsController extends Controller
      */
     public function index()
     {
-        return view('customizeProducts.index');
+        $products = Product::all();
+        return view('customizeProducts.index',['products'=>$products]);
     }
 
     /**
